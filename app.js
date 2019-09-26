@@ -44,6 +44,9 @@ var crearHTML = function(info) {
 
 app.get('/', async(req, res) => { //Muestra lista de usuarios
 
+    if (!req.session.userId) {
+        return res.redirect('/login');
+    }
     var info = await Formulario.find({}).exec();
     var html = crearHTML(info)
 
